@@ -1,0 +1,59 @@
+.chat-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 2px solid #4A90E2;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #4A90E2;
+    margin-bottom: 20px;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 15px;
+    transition: border 0.3s ease;
+
+    &:focus {
+      border-color: #4A90E2;
+      outline: none;
+    }
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #4A90E2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #357ABD;
+    }
+  }
+
+  .response {
+    margin-top: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 1rem;
+    color: #333;
+  }
+}

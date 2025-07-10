@@ -1,0 +1,12 @@
+<div class="chat-container">
+  <h2>ThunaiX - Your Smart Companion</h2>
+
+  <textarea [(ngModel)]="prompt" rows="4" placeholder="Ask ThunaiX..."></textarea>
+  <button (click)="send()">Send</button>
+
+  <div class="response">
+    <strong>Reply:</strong>
+    <p>{{ reply }}</p>
+  </div>
+</div>
+    
