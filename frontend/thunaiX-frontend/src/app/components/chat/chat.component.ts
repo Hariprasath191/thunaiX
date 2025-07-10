@@ -25,4 +25,10 @@ export class ChatComponent {
       }
     );
   }
+  clear(){
+    this.reply='';
+  } 
+  ReturnToHome(){
+
+  }
 }

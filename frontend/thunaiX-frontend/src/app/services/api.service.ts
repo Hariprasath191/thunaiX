@@ -8,6 +8,6 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   chat(prompt: string) {
-    return this.http.post<{ reply: string }>('http://localhost:8000/api/chat', { prompt });
+   return this.http.post<any>('http://localhost:8000/api/chat', { prompt });
   }
 }

@@ -1,12 +1,19 @@
 <div class="chat-container">
-  <h2>ThunaiX - Your Smart Companion</h2>
+  <h2>ThunaiX <span>Sentence Filler</span></h2>
 
-  <textarea [(ngModel)]="prompt" rows="4" placeholder="Ask ThunaiX..."></textarea>
-  <button (click)="send()">Send</button>
+  <textarea [(ngModel)]="prompt" rows="4" placeholder="Type the start of a sentence..."></textarea>
+
+  <div class="buttons-top">
+    <button class="primary" (click)="send()">✨ Complete</button>
+    <button class="danger" (click)="clear()">🗑️ Clear</button>
+  </div>
+
+  <div class="buttons-bottom">
+    <button class="secondary" (click)="ReturnToHome()">🏠 Back</button>
+  </div>
 
   <div class="response">
-    <strong>Reply:</strong>
+    <strong>Completed Sentence:</strong>
     <p>{{ reply }}</p>
   </div>
 </div>
-    
