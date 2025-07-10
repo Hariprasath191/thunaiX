@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../../header/header.component';
 @Component({
   selector: 'app-chat',
-  imports: [FormsModule],
+  imports: [FormsModule,
+    HeaderComponent
+  ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })

@@ -1,5 +1,8 @@
+
+<app-header></app-header>
 <div class="chat-container">
-  <h2>ThunaiX <span>Sentence Filler</span></h2>
+  
+    <h2 class="section-title">Sentence Filler</h2>
 
   <textarea [(ngModel)]="prompt" rows="4" placeholder="Type the start of a sentence..."></textarea>
 
@@ -8,12 +11,14 @@
     <button class="danger" (click)="clear()">🗑️ Clear</button>
   </div>
 
-  <div class="buttons-bottom">
-    <button class="secondary" (click)="ReturnToHome()">🏠 Back</button>
-  </div>
+  
 
   <div class="response">
     <strong>Completed Sentence:</strong>
     <p>{{ reply }}</p>
   </div>
+  <div class="buttons-bottom">
+    <button class="secondary" (click)="ReturnToHome()">🏠 Back</button>
+  </div>
 </div>
+

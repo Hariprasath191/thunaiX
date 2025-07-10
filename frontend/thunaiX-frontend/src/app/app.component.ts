@@ -10,4 +10,7 @@ import { ChatComponent } from './components/chat/chat.component';
 })
 export class AppComponent {
   title = 'thunaiX-frontend';
+  logout(){
+    
+  }
 }
