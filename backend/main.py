@@ -1,28 +1,53 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
-# Load DistilGPT-2 model and tokenizer
-model_name = "distilgpt2"  # Or "gpt2" for the base GPT-2 model
+# Load local GPT-2 model
+model_name = "distilgpt2"  # Or "gpt2" for bigger model
 model = GPT2LMHeadModel.from_pretrained(model_name)
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-
-# Set model to evaluation mode (no training)
 model.eval()
 
-# Generate Text Function
+# FastAPI app
+app = FastAPI()
+
+# Allow frontend to call this backend
+origins = [
+    "http://localhost:4200",  # Angular dev server
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Request & Response models
+class ChatRequest(BaseModel):
+    prompt: str
+
+class ChatResponse(BaseModel):
+    reply: str
+
+# Local GPT-2 generate function
 def generate_text(prompt, max_length=50):
-    # Tokenize the input prompt
     inputs = tokenizer.encode(prompt, return_tensors="pt")
-    
-    # Generate text from the model
-    with torch.no_grad():  # Turn off gradient calculation for inference
-        outputs = model.generate(inputs, max_length=max_length, num_return_sequences=1)
-    
-    # Decode the generated output back to text
+    with torch.no_grad():
+        outputs = model.generate(
+            inputs,
+            max_length=max_length,
+            num_return_sequences=1,
+            pad_token_id=tokenizer.eos_token_id
+        )
     text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return text
 
-# Test the function
-prompt = "Artificial intelligence is"
-generated_text = generate_text(prompt)
-print(generated_text)
+# Chat endpoint
+@app.post("/api/chat", response_model=ChatResponse)
+async def chat(request: ChatRequest):
+    reply = generate_text(request.prompt)
+    return ChatResponse(reply=reply)
